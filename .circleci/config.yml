@@ -1,0 +1,31 @@
+version: 2.1
+
+orbs:
+  python: circleci/python@1.2
+
+jobs:
+  build-and-test:
+    docker:
+      - image: cimg/python:3.9
+
+    steps:
+      - checkout
+      - run:
+          command: sudo apt-get update && sudo apt-get install -y  python3-distutils python3-apt
+      - python/install-packages:
+          pkg-manager: pip
+          pip-dependency-file: requirements.dev.txt
+      - run:
+          name: Lint Flake8
+          command: flake8 .
+      - run:
+          name: Lint Black
+          command: black . --check
+      - run:
+          name: Run tests
+          command: tox
+
+workflows:
+  sample:
+    jobs:
+      - build-and-test
