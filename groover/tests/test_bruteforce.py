@@ -1,4 +1,4 @@
-from groover.bruteforce import tracks_match
+from groover.bruteforce import tracks_match, tracks_match_recursive
 
 
 def test_nominal():
@@ -13,3 +13,9 @@ def test_duplicated_time():
     """
     tracks = [("t1", 1), ("t2", 1), ("t3", 1), ("t4", 4), ("t5", 5)]
     assert tracks_match(tracks, 3)
+
+
+def test_tracks_match_recursive():
+    tracks = [("t1", 1), ("t2", 2), ("t3", 3), ("t4", 4), ("t5", 5)]
+    # assert tracks_match_recursive(tracks, 6)
+    assert not tracks_match_recursive(tracks, 2)
