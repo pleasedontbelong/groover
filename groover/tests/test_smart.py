@@ -50,6 +50,7 @@ def test_found_three(tracks, total_length):
         ([1, 1, 2, 6, 6, 9], 1),
         ([1, 1, 1, 6, 6, 9], 0),
         ([3, 3, 3, 3, 3, 3], 3),
+        ([1, 2, 3], 8),
     ],
 )
 def test_not_found_three(tracks, total_length):
