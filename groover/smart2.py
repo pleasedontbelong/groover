@@ -1,6 +1,3 @@
-from groover.constants import MAX_NB_TRACKS
-
-
 def tracks_match(tracks, concert_premiere_length):
     """
     It generates all possible sums of numbers checking if a number of the

@@ -1,7 +1,5 @@
 from itertools import combinations
-
-MAX_NB_TRACKS = 3
-AUX = 0
+from groover.constants import MAX_NB_TRACKS
 
 
 def tracks_match(tracks, concert_premiere_length):

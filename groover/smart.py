@@ -1,6 +1,3 @@
-from groover.bruteforce import MAX_NB_TRACKS
-
-
 def tracks_match(tracks, concert_premiere_length):
     """
     Proxy for _find_three_tracks, just to be sure we sort the list
