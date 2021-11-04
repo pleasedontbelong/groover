@@ -1,5 +1,5 @@
 import pytest
-from groover.smart import _find_three_tracks, _find_two_tracks
+from groover.smart import tracks_match, _find_two_tracks
 
 
 @pytest.mark.parametrize(
@@ -40,7 +40,7 @@ def test_not_found_two(tracks, total_length):
     ],
 )
 def test_found_three(tracks, total_length):
-    assert _find_three_tracks(tracks, total_length)
+    assert tracks_match(tracks, total_length)
 
 
 @pytest.mark.parametrize(
@@ -53,4 +53,4 @@ def test_found_three(tracks, total_length):
     ],
 )
 def test_not_found_three(tracks, total_length):
-    assert not _find_three_tracks(tracks, total_length)
+    assert not tracks_match(tracks, total_length)
