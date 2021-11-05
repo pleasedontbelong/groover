@@ -59,8 +59,6 @@ tracks = [1, 1, 4, 5]  concert_premiere_length = 6
 
 ```
 
-I could have used recursivity for this algorith wich will allow us to go deeper and get more than 3 tracks.
-
 # Development
 
 ## Install on development mode
@@ -95,5 +93,3 @@ Currently using `flake8` for checking pep8 and autoformatting using `black`.
 flake8 .
 black . --check
 ```
-
-Started 22h05

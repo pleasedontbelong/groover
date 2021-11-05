@@ -7,32 +7,30 @@ def tracks_match(tracks, concert_premiere_length):
     return _find_three_tracks(length_distribution, concert_premiere_length)
 
 
-def _find_three_tracks(length_distribution, max_length):
+def _find_three_tracks(length_distribution, max_length, chosen=None):
+    if chosen is None:
+        chosen = []
+
     for number1, number2 in _get_two_number_combinations(
         length_distribution, max_length
     ):
+        if chosen and number1 in length_distribution and number2 in length_distribution:
+            return True
+
         if number2 not in length_distribution:
-            # try to replace the 2nd number with another combination of two numbers
-            # first we need to copy and remove the number1 from the distribution
-            new_distribution = length_distribution.copy()
-            new_distribution[number1] -= 1
-            for n1, n2 in _get_two_number_combinations(
-                new_distribution,
-                number2,
-            ):
-                if new_distribution.get(n1) and new_distribution.get(n2):
-                    return True
+            to_replace = number2
+            to_keep = number1
         else:
-            # try to replace the 1nd number with another combination of two numbers
-            # first we need to copy and remove the number1 from the distribution
-            new_distribution = length_distribution.copy()
-            new_distribution[number2] -= 1
-            for n1, n2 in _get_two_number_combinations(
-                new_distribution,
-                number1,
-            ):
-                if new_distribution.get(n1) and new_distribution.get(n2):
-                    return True
+            to_replace = number1
+            to_keep = number2
+        # try to replace one of the numbers with another combination of
+        # two numbers.
+        # first we need to copy and remove the number1 from the distribution
+        new_distribution = length_distribution.copy()
+        new_distribution[to_keep] -= 1
+        chosen.append(to_keep)
+        if _find_three_tracks(new_distribution, to_replace, chosen):
+            return True
 
 
 def _generate_distribution(tracks):
